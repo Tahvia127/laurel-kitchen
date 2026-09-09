@@ -1,0 +1,150 @@
+{
+  "note": "This is the only file you need to edit to change the menu. Prices are plain numbers. Set \"featured\": true on up to four dishes to show them on the home page.",
+  "sections": [
+    {
+      "name": "To Start",
+      "blurb": "Small plates meant for the middle of the table.",
+      "items": [
+        {
+          "name": "Sourdough & Cultured Butter",
+          "description": "Baked each morning, sea salt, olive oil",
+          "price": 9,
+          "tags": [
+            "v"
+          ]
+        },
+        {
+          "name": "Little Gem Caesar",
+          "description": "White anchovy, aged parmesan, rye crumb",
+          "price": 15,
+          "featured": true,
+          "image": "dish-salad"
+        },
+        {
+          "name": "Whipped Ricotta",
+          "description": "Hot honey, thyme, grilled bread",
+          "price": 14,
+          "tags": [
+            "v"
+          ]
+        },
+        {
+          "name": "Marinated Olives & Almonds",
+          "description": "Citrus, chili, rosemary",
+          "price": 8,
+          "tags": [
+            "v",
+            "gf"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mains",
+      "blurb": "Cooked over fire, plated simply.",
+      "items": [
+        {
+          "name": "Dry-Aged Ribeye",
+          "description": "Duck fat potatoes, salsa verde, bone marrow butter",
+          "price": 52,
+          "featured": true,
+          "image": "dish-steak"
+        },
+        {
+          "name": "Cacio e Pepe",
+          "description": "Hand-rolled bucatini, pecorino, black pepper",
+          "price": 24,
+          "featured": true,
+          "image": "dish-pasta",
+          "tags": [
+            "v"
+          ]
+        },
+        {
+          "name": "Wood-Fired Half Chicken",
+          "description": "Charred lemon, bread salad, pan jus",
+          "price": 32
+        },
+        {
+          "name": "Roasted Cauliflower Steak",
+          "description": "Tahini, pomegranate, dukkah",
+          "price": 26,
+          "tags": [
+            "v",
+            "gf"
+          ]
+        },
+        {
+          "name": "Lake Trout",
+          "description": "Brown butter, capers, fingerling potatoes",
+          "price": 34,
+          "tags": [
+            "gf"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "For the Table",
+      "blurb": "Built to share, priced to make it easy.",
+      "items": [
+        {
+          "name": "Butcher's Board",
+          "description": "Three cuts, seasonal sides, house pickles. Serves four.",
+          "price": 88,
+          "featured": true,
+          "image": "dish-board"
+        },
+        {
+          "name": "Wood-Fired Flatbread",
+          "description": "Fennel sausage, mozzarella, hot honey",
+          "price": 21,
+          "image": "dish-pizza"
+        },
+        {
+          "name": "Seasonal Vegetables",
+          "description": "Whatever is best that week, cooked over coals",
+          "price": 16,
+          "tags": [
+            "v",
+            "gf"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sweets",
+      "blurb": "",
+      "items": [
+        {
+          "name": "Olive Oil Cake",
+          "description": "Mascarpone, macerated citrus",
+          "price": 12,
+          "tags": [
+            "v"
+          ]
+        },
+        {
+          "name": "Basque Cheesecake",
+          "description": "Burnt top, black cherry",
+          "price": 13,
+          "tags": [
+            "v"
+          ]
+        },
+        {
+          "name": "Affogato",
+          "description": "Espresso, vanilla gelato, amaretti",
+          "price": 10,
+          "tags": [
+            "v"
+          ]
+        }
+      ]
+    }
+  ],
+  "legend": {
+    "v": "Vegetarian",
+    "gf": "Gluten free"
+  }
+}

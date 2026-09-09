@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{SITE_NAME}} | {{TAGLINE}}, {{CITY}}</title>
+<meta name="description" content="{{INTRO_SHORT}}">
+<meta property="og:title" content="{{SITE_NAME}} — {{TAGLINE}}">
+<meta property="og:description" content="{{INTRO_SHORT}}">
+<meta property="og:type" content="restaurant">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script type="application/ld+json">{{JSONLD}}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+{{NAV}}
+
+<header class="hero">
+  <img src="assets/img/hero.webp" alt="The dining room at {{SITE_NAME}}" width="1900" height="1267" fetchpriority="high">
+  <div class="inner">
+    <p class="eyebrow">Welcome to {{SITE_NAME}}</p>
+    <h1>Seasonal cooking,<br>an unfussy room</h1>
+    <a class="btn fill" href="#reserve">Reserve a table</a>
+  </div>
+  <span class="scroll-cue">Scroll</span>
+</header>
+
+<main id="main">
+
+<section class="section center">
+  <div class="narrow">
+    <p class="eyebrow rv">{{TAGLINE}} &middot; {{CITY}}</p>
+    <p class="lede rv">{{INTRO}}</p>
+  </div>
+</section>
+
+<section class="section tight">
+  <div class="shell">
+    <div class="gallery">{{GALLERY}}</div>
+  </div>
+</section>
+
+<section class="section forest" id="menu">
+  <div class="shell">
+    <div class="center" style="margin-bottom:3rem">
+      <p class="eyebrow rv">From the kitchen</p>
+      <h2 class="rv">This week we are cooking</h2>
+    </div>
+    <div class="dishes">{{FEATURED}}</div>
+    <div class="center" style="margin-top:3rem">
+      <a class="btn rv" href="menu.html">See the full menu</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell split">
+    <div class="im rv"><img src="assets/img/about-plate.webp" alt="A plated course at {{SITE_NAME}}" loading="lazy" width="1200" height="800"></div>
+    <div class="txt rv">
+      <p class="eyebrow">Our kitchen</p>
+      <h2>Cooked over fire,<br>plated simply</h2>
+      <p>We buy from growers we know, we bake our own bread every morning, and we write the menu around whatever is actually good that week. Nothing arrives at your table that we would not happily eat ourselves.</p>
+      <a class="btn onlight" href="menu.html">View the menu</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell split flip">
+    <div class="im rv"><img src="assets/img/events-room.webp" alt="The private back room at {{SITE_NAME}}" loading="lazy" width="1200" height="800"></div>
+    <div class="txt rv">
+      <p class="eyebrow">Private events</p>
+      <h2>The back room<br>is yours</h2>
+      <p>Twenty-four seated, forty standing. We handle the food, the wine and the timing so you can pay attention to your guests. Tell us the occasion and we will build a menu around it.</p>
+      <a class="btn onlight" href="#reserve">Enquire about an event</a>
+    </div>
+  </div>
+</section>
+
+<section class="section forest" id="reserve">
+  <div class="shell">
+    <div class="center" style="margin-bottom:3rem">
+      <p class="eyebrow rv">Find us</p>
+      <h2 class="rv">Reservations &amp; hours</h2>
+    </div>
+    <div class="info">
+      <div class="rv">
+        <h3>Hours</h3>
+        <ul>{{HOURS}}</ul>
+      </div>
+      <div class="rv">
+        <h3>Find us</h3>
+        <p>{{ADDR1}}<br>{{ADDR2}}</p>
+        <p><a href="tel:{{PHONE_RAW}}">{{PHONE}}</a><br><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p>
+      </div>
+      {{NOTES}}
+    </div>
+    <div class="center" style="margin-top:3rem">
+      <a class="btn fill" href="tel:{{PHONE_RAW}}">Call to reserve</a>
+    </div>
+  </div>
+</section>
+
+</main>
+{{FOOTER}}
+{{SCRIPT}}
+</body>
+</html>

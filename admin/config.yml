@@ -1,0 +1,101 @@
+# Laurel — content settings.
+# The owner edits menu.json and site.json here; a GitHub Action rebuilds the site.
+
+backend:
+  name: github
+  repo: Tahvia127/laurel-kitchen
+  branch: main
+  commit_messages:
+    update: 'Menu update: {{collection}}'
+
+# Lets the kitchen preview edits at localhost with `npx decap-server`
+local_backend: true
+
+media_folder: assets/img
+public_folder: assets/img
+
+collections:
+  - name: menu
+    label: Menu
+    files:
+      - name: menu
+        label: Food & drink menu
+        file: data/menu.json
+        description: >
+          Change prices, rename dishes, add or remove courses. Tick "Show on
+          home page" for up to four dishes. Save, and the site updates in
+          about a minute.
+        fields:
+          - { name: note, label: Internal note, widget: string, required: false }
+          - name: sections
+            label: Courses
+            label_singular: Course
+            widget: list
+            collapsed: false
+            summary: '{{fields.name}} — {{fields.items.length}} items'
+            fields:
+              - { name: name, label: Course name, widget: string }
+              - { name: blurb, label: Course description, widget: string, required: false }
+              - name: items
+                label: Dishes
+                label_singular: Dish
+                widget: list
+                summary: '{{fields.name}} — ${{fields.price}}'
+                fields:
+                  - { name: name, label: Dish, widget: string }
+                  - { name: description, label: Description, widget: string }
+                  - { name: price, label: Price (numbers only), widget: number, value_type: float, min: 0 }
+                  - { name: featured, label: Show on home page, widget: boolean, default: false, required: false }
+                  - name: image
+                    label: Photo (home page only)
+                    widget: select
+                    required: false
+                    options: ['', dish-board, dish-steak, dish-salad, dish-pasta, dish-plates, dish-pizza]
+                  - name: tags
+                    label: Dietary
+                    widget: select
+                    multiple: true
+                    required: false
+                    options: [v, gf]
+          - name: legend
+            label: Dietary key
+            widget: object
+            fields:
+              - { name: v, label: 'v means', widget: string }
+              - { name: gf, label: 'gf means', widget: string }
+
+  - name: settings
+    label: Restaurant details
+    files:
+      - name: site
+        label: Hours, address & intro
+        file: data/site.json
+        fields:
+          - { name: name, label: Restaurant name, widget: string }
+          - { name: tagline, label: Tagline, widget: string }
+          - { name: city, label: City, widget: string }
+          - { name: intro, label: Intro paragraph, widget: text }
+          - name: address
+            label: Address
+            widget: object
+            fields:
+              - { name: line1, label: Street, widget: string }
+              - { name: line2, label: "City, state, zip", widget: string }
+          - { name: phone, label: Phone, widget: string }
+          - { name: email, label: Email, widget: string }
+          - { name: reservationUrl, label: Reservation link, widget: string, required: false }
+          - name: hours
+            label: Opening hours
+            widget: list
+            summary: '{{fields.days}} — {{fields.time}}'
+            fields:
+              - { name: days, label: Days, widget: string }
+              - { name: time, label: Hours, widget: string }
+          - name: notes
+            label: Extra panels
+            widget: list
+            required: false
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: Heading, widget: string }
+              - { name: body, label: Text, widget: text }

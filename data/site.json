@@ -1,0 +1,20 @@
+{
+  "name": "Laurel",
+  "tagline": "Neighborhood Kitchen",
+  "city": "Chicago",
+  "intro": "Laurel is a neighborhood kitchen in Logan Square, built on the idea that a good dinner does not need to be complicated. We cook seasonally, we bake our own bread, and we keep the wine list short and honest. Come as you are, stay as long as you like.",
+  "address": { "line1": "2418 N Milwaukee Ave", "line2": "Chicago, IL 60647" },
+  "phone": "(773) 555-0148",
+  "email": "hello@laurelkitchen.com",
+  "reservationUrl": "#reserve",
+  "hours": [
+    { "days": "Tuesday to Thursday", "time": "5:00pm to 10:00pm" },
+    { "days": "Friday and Saturday", "time": "5:00pm to 11:00pm" },
+    { "days": "Sunday", "time": "10:00am to 3:00pm, brunch" },
+    { "days": "Monday", "time": "Closed" }
+  ],
+  "notes": [
+    { "title": "Private events", "body": "Our back room seats twenty-four for dinner and forty standing. We handle the food, the wine and the timing; you handle the guest list." },
+    { "title": "Walk-ins", "body": "The bar is always kept for walk-ins. If the dining room is full, there is usually a seat at the counter." }
+  ]
+}

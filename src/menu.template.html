@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menu | {{SITE_NAME}}, {{CITY}}</title>
+<meta name="description" content="The current menu at {{SITE_NAME}}, a {{TAGLINE_LC}} in {{CITY}}.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+{{NAV}}
+
+<header class="hero" style="min-height:min(52vh,460px)">
+  <img src="assets/img/dish-plates.webp" alt="" width="1000" height="667">
+  <div class="inner" style="padding-bottom:3.5rem">
+    <p class="eyebrow">{{SITE_NAME}}</p>
+    <h1>The menu</h1>
+  </div>
+</header>
+
+<main id="main" class="section">
+  <div class="narrow">
+    {{MENU}}
+    <p class="legend rv">{{LEGEND}}</p>
+    <p class="legend rv" style="margin-top:2.4rem">Menu updated {{UPDATED}}. Prices in USD.</p>
+    <div class="center" style="margin-top:2.6rem">
+      <a class="btn onlight rv" href="index.html#reserve">Reserve a table</a>
+    </div>
+  </div>
+</main>
+{{FOOTER}}
+{{SCRIPT}}
+</body>
+</html>
