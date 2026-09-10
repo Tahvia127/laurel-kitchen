@@ -74,6 +74,15 @@ Everything else is already wired.
 - **Menu layout** uses dotted leaders between dish and price, which stays readable when a dish name wraps.
 - **SEO:** `Restaurant` JSON-LD with address, phone and a link to the menu.
 
+## The demo notice
+
+`data/site.json` carries a `demo` block. While `show` is `true` the site renders a
+notice bar at the top and a matching line above the footer, both linking back to
+Framework Studio. Set `show` to `false` for a real client and both disappear.
+
+Because the pages are generated, a disclaimer typed straight into `index.html`
+would be erased by the next build. Editing `site.json` is what makes it stick.
+
 ## Photography
 
 Placeholder photography from [Unsplash](https://unsplash.com), used under the Unsplash License. Replace `assets/img/*.webp` with the client's own photography before launch. Images are WebP, sized to their display slot and lazy-loaded below the fold.

@@ -30,6 +30,16 @@ const FOOTER = `<footer><div class="shell">
   <span><a href="tel:${site.phone.replace(/[^\d+]/g,'')}">${esc(site.phone)}</a></span>
 </div></footer>`;
 
+const demo = site.demo || {};
+const DEMOBAR = demo.show ? `<div class="demo-bar" role="note">
+  <p>${esc(demo.text)}</p><span class="sep">&middot;</span>
+  <a href="${esc(demo.url)}" target="_blank" rel="noopener noreferrer">${esc(demo.linkText)}</a>
+</div>` : '';
+
+const DEMOFOOT = demo.show ? `<div class="demo-foot">
+  ${esc(demo.text)} <a href="${esc(demo.url)}" target="_blank" rel="noopener noreferrer">${esc(demo.linkText)}</a>
+</div>` : '';
+
 const SCRIPT = `<script>
 var nav=document.getElementById('nav');
 addEventListener('scroll',function(){nav.classList.toggle('solid',scrollY>40)},{passive:true});
@@ -89,7 +99,7 @@ const vars = {
   INTRO_SHORT: esc(site.intro.split('. ').slice(0,2).join('. ') + '.'),
   ADDR1: esc(site.address.line1), ADDR2: esc(site.address.line2),
   PHONE: esc(site.phone), PHONE_RAW: site.phone.replace(/[^\d+]/g,''), EMAIL: esc(site.email),
-  NAV, FOOTER, SCRIPT, FEATURED, GALLERY, HOURS, NOTES, MENU, LEGEND, JSONLD,
+  NAV, FOOTER, SCRIPT, DEMOBAR, DEMOFOOT, FEATURED, GALLERY, HOURS, NOTES, MENU, LEGEND, JSONLD,
   UPDATED: new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})
 };
 
