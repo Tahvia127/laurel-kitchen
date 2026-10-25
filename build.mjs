@@ -317,7 +317,7 @@ PAGES.index = head('index', { title: site.seo.title, description: site.seo.descr
       </figure>
       <span class="blob blob-1" aria-hidden="true"></span>
       <span class="blob blob-2" aria-hidden="true"></span>
-      <p class="scribble" aria-hidden="true">pull up a chair</p>
+      <p class="scribble" aria-hidden="true">let&rsquo;s eat</p>
     </div>
   </div>
   <ul class="hero-stickers">${B.hero.stickers.map((s, n) => `<li style="--i:${n}">${esc(s)}</li>`).join('')}</ul>
