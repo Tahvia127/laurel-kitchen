@@ -3,11 +3,15 @@ name: Build site
 on:
   push:
     branches: [main]
-    paths: ['data/**', 'src/**', 'build.mjs']
+    paths: ['data/**', 'build.mjs', 'assets/img/**']
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: build-pages
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -24,10 +28,10 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- index.html menu.html; then
+          if git diff --quiet -- '*.html'; then
             echo "No page changes."
           else
-            git add index.html menu.html
-            git commit -m "Rebuild pages from menu data"
+            git add index.html menu.html order.html events.html
+            git commit -m "Rebuild pages from content"
             git push
           fi

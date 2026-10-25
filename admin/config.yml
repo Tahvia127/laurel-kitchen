@@ -1,14 +1,15 @@
 # Laurel — content settings.
-# The owner edits menu.json and site.json here; a GitHub Action rebuilds the site.
+# The owner edits the menu and the site details here. A GitHub Action rebuilds
+# the pages, so nothing on this site needs a developer once it is handed over.
 
 backend:
   name: github
   repo: Tahvia127/laurel-kitchen
   branch: main
   commit_messages:
-    update: 'Menu update: {{collection}}'
+    update: 'Content update: { {collection} }'
 
-# Lets the kitchen preview edits at localhost with `npx decap-server`
+# Lets the kitchen preview edits on a laptop with `npx decap-server`
 local_backend: true
 
 media_folder: assets/img
@@ -19,83 +20,364 @@ collections:
     label: Menu
     files:
       - name: menu
-        label: Food & drink menu
+        label: The menu
         file: data/menu.json
-        description: >
-          Change prices, rename dishes, add or remove courses. Tick "Show on
-          home page" for up to four dishes. Save, and the site updates in
-          about a minute.
+        description: 'Prices here are the prices at the table and at checkout. Change one and it changes everywhere.'
         fields:
-          - { name: note, label: Internal note, widget: string, required: false }
-          - name: sections
-            label: Courses
-            label_singular: Course
-            widget: list
-            collapsed: false
-            summary: '{{fields.name}} — {{fields.items.length}} items'
+          - { name: updated, label: Menu last updated, widget: date, format: 'YYYY-MM-DD' }
+          - { name: allergenNote, label: Allergen note, widget: text }
+          - name: legend
+            label: Diet labels
+            widget: object
+            collapsed: true
             fields:
-              - { name: name, label: Course name, widget: string }
-              - { name: blurb, label: Course description, widget: string, required: false }
+              - { name: v, label: v, widget: string }
+              - { name: vg, label: vg, widget: string }
+              - { name: gf, label: gf, widget: string }
+              - { name: gfo, label: gfo, widget: string }
+              - { name: spicy, label: spicy, widget: string }
+          - name: legendShort
+            label: Short diet labels, used on the filter buttons
+            widget: object
+            collapsed: true
+            fields:
+              - { name: v, label: v, widget: string }
+              - { name: vg, label: vg, widget: string }
+              - { name: gf, label: gf, widget: string }
+              - { name: gfo, label: gfo, widget: string }
+              - { name: spicy, label: spicy, widget: string }
+          - name: optionGroups
+            label: Choices customers can make
+            label_singular: choice group
+            widget: list
+            collapsed: true
+            summary: '{ {fields.label}} ({{fields.id} })'
+            fields:
+              - { name: id, label: ID, widget: string, hint: 'Lowercase, no spaces. Dishes point at this.' }
+              - { name: label, label: Shown to customers, widget: string }
+              - { name: type, label: Type, widget: select, options: ['single', 'multi'] }
+              - { name: required, label: Must pick one, widget: boolean, required: false, default: false }
+              - { name: max, label: Most they can pick, widget: number, required: false, value_type: int }
+              - name: choices
+                label: Choices
+                widget: list
+                summary: '{ {fields.name}} {{fields.price} }'
+                fields:
+                  - { name: name, label: Choice, widget: string }
+                  - { name: price, label: Extra charge, widget: number, value_type: float, default: 0, hint: 'Use 0 for no charge, or a negative number for a discount.' }
+                  - { name: default, label: Picked by default, widget: boolean, required: false, default: false }
+          - name: sections
+            label: Menu sections
+            label_singular: section
+            widget: list
+            summary: '{ {fields.name} }'
+            fields:
+              - { name: id, label: ID, widget: string, hint: 'Used in the link to this section, for example #pizza.' }
+              - { name: name, label: Section name, widget: string }
+              - { name: blurb, label: One line under the heading, widget: string }
+              - { name: availability, label: Only served at certain times, widget: string, required: false }
               - name: items
                 label: Dishes
-                label_singular: Dish
+                label_singular: dish
                 widget: list
-                summary: '{{fields.name}} — ${{fields.price}}'
+                summary: '{ {fields.name}} — ${{fields.price} }'
                 fields:
+                  - { name: id, label: ID, widget: string, hint: 'Lowercase, no spaces, and never reused.' }
                   - { name: name, label: Dish, widget: string }
                   - { name: description, label: Description, widget: string }
-                  - { name: price, label: Price (numbers only), widget: number, value_type: float, min: 0 }
-                  - { name: featured, label: Show on home page, widget: boolean, default: false, required: false }
-                  - name: image
-                    label: Photo (home page only)
-                    widget: select
-                    required: false
-                    options: ['', dish-board, dish-steak, dish-salad, dish-pasta, dish-plates, dish-pizza]
+                  - { name: price, label: Price, widget: number, value_type: float }
                   - name: tags
-                    label: Dietary
+                    label: Diet labels
                     widget: select
                     multiple: true
                     required: false
-                    options: [v, gf]
-          - name: legend
-            label: Dietary key
-            widget: object
-            fields:
-              - { name: v, label: 'v means', widget: string }
-              - { name: gf, label: 'gf means', widget: string }
+                    options: ['v', 'vg', 'gf', 'gfo', 'spicy']
+                  - { name: image, label: Photo file name, widget: string, required: false, hint: 'The file name in assets/img without .webp, for example dish-pasta. Leave blank for no photo.' }
+                  - { name: featured, label: Show on the home page, widget: boolean, required: false, default: false, hint: 'Needs a photo.' }
+                  - { name: popular, label: Mark as popular, widget: boolean, required: false, default: false }
+                  - name: options
+                    label: Choice groups for this dish
+                    widget: list
+                    required: false
+                    field: { name: group, label: Group ID, widget: string }
 
-  - name: settings
+  - name: site
     label: Restaurant details
     files:
-      - name: site
-        label: Hours, address & intro
+      - name: hours
+        label: Hours & contact
         file: data/site.json
+        description: 'Hours drive the open or closed badge, the pickup times and the Google listing markup. Keep them honest.'
         fields:
-          - { name: name, label: Restaurant name, widget: string }
-          - { name: tagline, label: Tagline, widget: string }
-          - { name: city, label: City, widget: string }
-          - { name: intro, label: Intro paragraph, widget: text }
-          - name: address
-            label: Address
+          - name: brand
+            label: Name & headline
             widget: object
+            collapsed: true
             fields:
-              - { name: line1, label: Street, widget: string }
-              - { name: line2, label: "City, state, zip", widget: string }
-          - { name: phone, label: Phone, widget: string }
-          - { name: email, label: Email, widget: string }
-          - { name: reservationUrl, label: Reservation link, widget: string, required: false }
+              - { name: name, label: Name, widget: string }
+              - { name: tagline, label: Tagline, widget: string }
+              - { name: neighborhood, label: Neighborhood, widget: string }
+              - { name: city, label: City, widget: string }
+              - { name: shortPitch, label: One-line pitch, widget: text }
+              - name: hero
+                label: Top of the home page
+                widget: object
+                fields:
+                  - { name: kicker, label: Small label, widget: string }
+                  - { name: lead, label: "Headline, first line", widget: string }
+                  - { name: leadEm, label: "Headline, highlighted part", widget: string }
+                  - { name: sub, label: Paragraph, widget: text }
+                  - { name: stickers, label: Stickers under the headline, widget: list, field: { name: text, widget: string } }
+              - { name: marquee, label: Scrolling strip, widget: list, field: { name: text, widget: string } }
+          - name: contact
+            label: Contact
+            widget: object
+            collapsed: true
+            fields:
+              - { name: phone, label: Phone, widget: string }
+              - { name: email, label: Email, widget: string }
+              - { name: eventsEmail, label: Events email, widget: string }
+              - { name: jobsEmail, label: Jobs email, widget: string }
+              - name: address
+                label: Address
+                widget: object
+                fields:
+                  - { name: line1, label: Street, widget: string }
+                  - { name: line2, label: "City, state, zip", widget: string }
+              - { name: mapLink, label: Map link, widget: string }
+              - name: social
+                label: Social links
+                widget: list
+                summary: '{ {fields.name} }'
+                fields:
+                  - { name: name, label: Network, widget: string }
+                  - { name: handle, label: Handle, widget: string }
+                  - { name: url, label: Link, widget: string }
           - name: hours
             label: Opening hours
-            widget: list
-            summary: '{{fields.days}} — {{fields.time}}'
+            widget: object
             fields:
-              - { name: days, label: Days, widget: string }
-              - { name: time, label: Hours, widget: string }
-          - name: notes
-            label: Extra panels
-            widget: list
-            required: false
-            summary: '{{fields.title}}'
+              - { name: _note, label: Note to yourself, widget: string, required: false }
+              - name: days
+                label: Days
+                widget: list
+                summary: '{ {fields.day} }'
+                fields:
+                  - { name: day, label: Day, widget: select, options: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] }
+                  - { name: label, label: Short label, widget: string }
+                  - { name: closed, label: Closed all day, widget: boolean, required: false, default: false }
+                  - { name: open, label: Opens, widget: string, required: false, pattern: ['^\d\d:\d\d$', 'Use 24-hour time, for example 16:00'] }
+                  - { name: close, label: Closes, widget: string, required: false, pattern: ['^\d\d:\d\d$', 'Use 24-hour time, for example 22:00'] }
+                  - { name: note, label: Extra note, widget: string, required: false }
+              - { name: happyHour, label: Happy hour, widget: string }
+              - { name: kitchenNote, label: Kitchen note, widget: string }
+          - name: ordering
+            label: Online ordering
+            widget: object
+            collapsed: true
             fields:
-              - { name: title, label: Heading, widget: string }
-              - { name: body, label: Text, widget: text }
+              - { name: _note, label: Note to yourself, widget: string, required: false }
+              - { name: taxRate, label: Tax rate, widget: number, value_type: float, hint: 'A decimal. 0.1075 is 10.75%.' }
+              - { name: pickupMinutes, label: Pickup time in minutes, widget: number, value_type: int }
+              - { name: deliveryMinutes, label: Delivery time in minutes, widget: number, value_type: int }
+              - { name: deliveryFee, label: Delivery fee, widget: number, value_type: float }
+              - { name: deliveryMinimum, label: Delivery minimum, widget: number, value_type: float }
+              - { name: deliveryRadius, label: Delivery area, widget: string }
+              - { name: tipPresets, label: Tip buttons, widget: list, field: { name: percent, widget: number, value_type: int } }
+              - { name: defaultTip, label: Tip picked by default, widget: number, value_type: int }
+              - name: promo
+                label: Promo code
+                widget: object
+                fields:
+                  - { name: code, label: Code, widget: string }
+                  - { name: percent, label: Percent off, widget: number, value_type: int }
+                  - { name: blurb, label: How it is advertised, widget: string }
+              - { name: largeOrderThreshold, label: Catering kicks in above, widget: number, value_type: float }
+              - { name: largeOrderNote, label: Large order note, widget: string }
+          - name: reservations
+            label: Reservations
+            widget: object
+            collapsed: true
+            fields:
+              - { name: blurb, label: Blurb, widget: text }
+              - { name: maxParty, label: Biggest party you take online, widget: number, value_type: int }
+              - { name: largePartyNote, label: Large party note, widget: string }
+              - { name: holdMinutes, label: How long you hold a table, widget: number, value_type: int }
+          - name: story
+            label: Our story
+            widget: object
+            collapsed: true
+            fields:
+              - { name: kicker, label: Small label, widget: string }
+              - { name: heading, label: Heading, widget: string }
+              - { name: headingEm, label: "Heading, highlighted part", widget: string }
+              - { name: body, label: Paragraphs, widget: list, field: { name: text, widget: text } }
+              - { name: signature, label: Handwritten sign-off, widget: string }
+              - name: facts
+                label: Numbers
+                widget: list
+                summary: '{ {fields.n}} {{fields.l} }'
+                fields:
+                  - { name: n, label: Number, widget: string }
+                  - { name: l, label: Label, widget: string }
+          - name: orderways
+            label: Ways to order
+            widget: list
+            collapsed: true
+            summary: '{ {fields.title} }'
+            fields:
+              - { name: id, label: ID, widget: select, options: ['pickup', 'delivery', 'catering'] }
+              - { name: title, label: Title, widget: string }
+              - { name: time, label: How long it takes, widget: string }
+              - { name: body, label: Description, widget: text }
+              - { name: image, label: Photo file name, widget: string }
+              - { name: cta, label: Button text, widget: string }
+          - name: rewards
+            label: Rewards club
+            widget: object
+            collapsed: true
+            fields:
+              - { name: name, label: Club name, widget: string }
+              - { name: kicker, label: Small label, widget: string }
+              - { name: heading, label: Heading, widget: string }
+              - { name: headingEm, label: "Heading, highlighted part", widget: string }
+              - { name: body, label: Paragraph, widget: text }
+              - name: perks
+                label: Perks
+                widget: list
+                summary: '{ {fields.t} }'
+                fields:
+                  - { name: t, label: Perk, widget: string }
+                  - { name: d, label: Detail, widget: string }
+          - name: reviews
+            label: Reviews
+            widget: object
+            collapsed: true
+            fields:
+              - { name: kicker, label: Small label, widget: string }
+              - { name: heading, label: Heading, widget: string }
+              - { name: headingEm, label: "Heading, highlighted part", widget: string }
+              - { name: note, label: Note under the reviews, widget: string }
+              - name: items
+                label: Reviews
+                widget: list
+                summary: '{ {fields.name}} — {{fields.stars} }'
+                fields:
+                  - { name: stars, label: Stars, widget: number, value_type: int, min: 1, max: 5 }
+                  - { name: quote, label: Review, widget: text }
+                  - { name: name, label: Name, widget: string }
+                  - { name: source, label: Where it came from, widget: string }
+                  - { name: when, label: How long ago, widget: string }
+          - name: events
+            label: Private events
+            widget: object
+            collapsed: true
+            fields:
+              - { name: kicker, label: Small label, widget: string }
+              - { name: heading, label: Heading, widget: string }
+              - { name: headingEm, label: "Heading, highlighted part", widget: string }
+              - { name: lead, label: Paragraph, widget: text }
+              - name: packages
+                label: Packages
+                widget: list
+                summary: '{ {fields.name} }'
+                fields:
+                  - { name: name, label: Name, widget: string }
+                  - { name: capacity, label: Capacity, widget: string }
+                  - { name: price, label: Price, widget: string }
+                  - { name: featured, label: Mark as most booked, widget: boolean, required: false, default: false }
+                  - { name: includes, label: What is included, widget: list, field: { name: text, widget: string } }
+              - name: catering
+                label: Catering trays
+                widget: object
+                fields:
+                  - { name: heading, label: Heading, widget: string }
+                  - { name: body, label: Paragraph, widget: text }
+                  - name: items
+                    label: Trays
+                    widget: list
+                    summary: '{ {fields.name}} — ${{fields.price} }'
+                    fields:
+                      - { name: name, label: Tray, widget: string }
+                      - { name: serves, label: Serves, widget: string }
+                      - { name: price, label: Price, widget: number, value_type: float }
+                      - { name: d, label: What is in it, widget: string }
+              - name: faq
+                label: Event questions
+                widget: list
+                summary: '{ {fields.q} }'
+                fields:
+                  - { name: q, label: Question, widget: string }
+                  - { name: a, label: Answer, widget: text }
+          - name: visit
+            label: Getting here
+            widget: object
+            collapsed: true
+            fields:
+              - { name: kicker, label: Small label, widget: string }
+              - { name: heading, label: Heading, widget: string }
+              - { name: headingEm, label: "Heading, highlighted part", widget: string }
+              - { name: transit, label: Transit, widget: text }
+              - { name: parking, label: Parking, widget: text }
+              - { name: access, label: Accessibility, widget: text }
+              - { name: dogs, label: Dogs, widget: text }
+          - name: faq
+            label: Questions
+            widget: list
+            collapsed: true
+            summary: '{ {fields.q} }'
+            fields:
+              - { name: q, label: Question, widget: string }
+              - { name: a, label: Answer, widget: text }
+          - name: press
+            label: Press
+            widget: object
+            collapsed: true
+            fields:
+              - { name: note, label: Note under the quotes, widget: string }
+              - name: items
+                label: Quotes
+                widget: list
+                summary: '{ {fields.source} }'
+                fields:
+                  - { name: quote, label: Quote, widget: string }
+                  - { name: source, label: Publication, widget: string }
+          - name: giftcards
+            label: Gift cards
+            widget: object
+            collapsed: true
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - { name: body, label: Paragraph, widget: text }
+              - { name: amounts, label: Amounts, widget: list, field: { name: amount, widget: number, value_type: int } }
+          - name: newsletter
+            label: Newsletter
+            widget: object
+            collapsed: true
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - { name: body, label: Paragraph, widget: text }
+          - name: seo
+            label: Search listing
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: Page title, widget: string }
+              - { name: description, label: Description, widget: text }
+              - name: geo
+                label: Map pin
+                widget: object
+                fields:
+                  - { name: lat, label: Latitude, widget: number, value_type: float }
+                  - { name: lng, label: Longitude, widget: number, value_type: float }
+              - { name: priceRange, label: Price range, widget: string }
+              - { name: cuisine, label: Cuisine, widget: list, field: { name: name, widget: string } }
+          - name: demo
+            label: Demo notice
+            widget: object
+            collapsed: true
+            fields:
+              - { name: show, label: Show the demo bar, widget: boolean }
+              - { name: text, label: Text, widget: text }
+              - { name: linkText, label: Link text, widget: string }
+              - { name: url, label: Link, widget: string }

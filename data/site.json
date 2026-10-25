@@ -1,43 +1,434 @@
 {
-  "name": "Laurel",
-  "tagline": "Neighborhood Kitchen",
-  "city": "Chicago",
-  "intro": "Laurel is a neighborhood kitchen in Logan Square, built on the idea that a good dinner does not need to be complicated. We cook seasonally, we bake our own bread, and we keep the wine list short and honest. Come as you are, stay as long as you like.",
-  "address": {
-    "line1": "2418 N Milwaukee Ave",
-    "line2": "Chicago, IL 60647"
+  "_note": "Everything on the site except the menu lives in this file. The menu is in menu.json.",
+  "brand": {
+    "name": "Laurel",
+    "tagline": "Wood-fired neighborhood kitchen",
+    "neighborhood": "Logan Square",
+    "city": "Chicago",
+    "shortPitch": "Wood-fired pizza, hand-rolled pasta and a short, honest wine list. Logan Square, seven days a week.",
+    "hero": {
+      "kicker": "Logan Square, Chicago",
+      "lead": "Come hungry,",
+      "leadEm": "stay late.",
+      "sub": "Wood-fired pizza, hand-rolled pasta and cold drinks in a room that gets loud on purpose. Order pickup in about 20 minutes, or grab a table and make a night of it.",
+      "stickers": [
+        "Oven fired at 4pm",
+        "Pasta rolled daily",
+        "Patio is open"
+      ]
+    },
+    "marquee": [
+      "Wood-fired at 800°",
+      "Pasta rolled this morning",
+      "Happy hour 4 to 6",
+      "Sunday brunch till 3",
+      "Patio is open",
+      "Pickup in about 20"
+    ]
   },
-  "phone": "(555) 555-0148",
-  "email": "hello@laurelkitchen.example",
-  "reservationUrl": "#reserve",
-  "hours": [
+  "contact": {
+    "phone": "(555) 555-0148",
+    "email": "hello@laurelkitchen.example",
+    "eventsEmail": "events@laurelkitchen.example",
+    "jobsEmail": "jobs@laurelkitchen.example",
+    "address": {
+      "line1": "2418 N Milwaukee Ave",
+      "line2": "Chicago, IL 60647"
+    },
+    "mapLink": "https://www.openstreetmap.org/?mlat=41.9285&mlon=-87.7042#map=17/41.9285/-87.7042",
+    "social": [
+      {
+        "name": "Instagram",
+        "handle": "@laurelkitchen",
+        "url": "https://instagram.com"
+      },
+      {
+        "name": "TikTok",
+        "handle": "@laurelkitchen",
+        "url": "https://tiktok.com"
+      },
+      {
+        "name": "Facebook",
+        "handle": "Laurel Kitchen",
+        "url": "https://facebook.com"
+      }
+    ]
+  },
+  "hours": {
+    "_note": "open and close are 24-hour local times. Set closed:true for a dark day. The site works out what is open right now from this.",
+    "days": [
+      {
+        "day": "Sunday",
+        "label": "Sun",
+        "open": "10:00",
+        "close": "21:00",
+        "note": "Brunch till 3"
+      },
+      {
+        "day": "Monday",
+        "label": "Mon",
+        "closed": true
+      },
+      {
+        "day": "Tuesday",
+        "label": "Tue",
+        "open": "16:00",
+        "close": "22:00"
+      },
+      {
+        "day": "Wednesday",
+        "label": "Wed",
+        "open": "16:00",
+        "close": "22:00"
+      },
+      {
+        "day": "Thursday",
+        "label": "Thu",
+        "open": "16:00",
+        "close": "22:00"
+      },
+      {
+        "day": "Friday",
+        "label": "Fri",
+        "open": "16:00",
+        "close": "23:00"
+      },
+      {
+        "day": "Saturday",
+        "label": "Sat",
+        "open": "10:00",
+        "close": "23:00",
+        "note": "Brunch till 3"
+      }
+    ],
+    "happyHour": "Tuesday to Friday, 4 to 6pm at the bar",
+    "kitchenNote": "The kitchen stops 30 minutes before close. The bar keeps going."
+  },
+  "ordering": {
+    "_note": "Fees and times used by the order page. taxRate is a decimal.",
+    "taxRate": 0.1075,
+    "pickupMinutes": 20,
+    "deliveryMinutes": 45,
+    "deliveryFee": 3.99,
+    "deliveryMinimum": 20,
+    "deliveryRadius": "Two miles, roughly Western to Pulaski and Diversey to Armitage",
+    "tipPresets": [
+      15,
+      18,
+      20,
+      25
+    ],
+    "defaultTip": 18,
+    "promo": {
+      "code": "LAUREL10",
+      "percent": 10,
+      "blurb": "First online order? Use code LAUREL10 for 10% off."
+    },
+    "largeOrderThreshold": 150,
+    "largeOrderNote": "Over $150 is catering. Give us 24 hours and we will take care of you."
+  },
+  "reservations": {
+    "blurb": "Tables for one to six, booked up to 30 days out. The bar and the patio are always kept for walk-ins.",
+    "maxParty": 6,
+    "largePartyNote": "Seven or more is a private event. We will sort it out with you.",
+    "holdMinutes": 15
+  },
+  "story": {
+    "kicker": "Who we are",
+    "heading": "A kitchen that acts like a",
+    "headingEm": "front porch",
+    "body": [
+      "Laurel started in 2021 with one oven, four tables and a rule we still keep: nobody gets rushed. We fire pizza at 800 degrees, roll pasta every morning, and buy from growers we can drive to.",
+      "The room is loud, the lights are warm and the playlist is somebody's actual mixtape. Come in a sweatshirt. Bring the baby. Stay for one more."
+    ],
+    "signature": "See you Tuesday",
+    "facts": [
+      {
+        "n": "800°",
+        "l": "Oven temperature"
+      },
+      {
+        "n": "6am",
+        "l": "Dough goes in"
+      },
+      {
+        "n": "12",
+        "l": "Farms we buy from"
+      },
+      {
+        "n": "7",
+        "l": "Days a week"
+      }
+    ]
+  },
+  "orderways": [
     {
-      "days": "Tuesday to Thursday",
-      "time": "5:00pm to 10:00pm"
+      "id": "pickup",
+      "title": "Pickup",
+      "time": "About 20 minutes",
+      "body": "Order on the site, park out front, grab it at the counter. No apps, no third-party markup.",
+      "image": "pickup",
+      "cta": "Start a pickup order"
     },
     {
-      "days": "Friday and Saturday",
-      "time": "5:00pm to 11:00pm"
+      "id": "delivery",
+      "title": "Delivery",
+      "time": "About 45 minutes",
+      "body": "Two miles in every direction, brought by people we actually employ. $20 minimum, $3.99 flat.",
+      "image": "gallery-3",
+      "cta": "Start a delivery order"
     },
     {
-      "days": "Sunday",
-      "time": "10:00am to 3:00pm, brunch"
-    },
-    {
-      "days": "Monday",
-      "time": "Closed"
+      "id": "catering",
+      "title": "Catering & events",
+      "time": "24 hours notice",
+      "body": "Trays for the office, a buyout for the whole room, or the back table for twelve of your favorite people.",
+      "image": "events-table",
+      "cta": "Plan an event"
     }
   ],
-  "notes": [
+  "rewards": {
+    "name": "Laurel Club",
+    "kicker": "Free to join",
+    "heading": "Eat here twice a month?",
+    "headingEm": "Get paid for it.",
+    "body": "A point for every dollar, 100 points for $10 off, and something sweet on your birthday. Join at checkout or right here.",
+    "perks": [
+      {
+        "t": "A free side on day one",
+        "d": "Fries, a little gem salad, or garlic bread. Your call."
+      },
+      {
+        "t": "Saved orders",
+        "d": "Your usual is two taps away next time."
+      },
+      {
+        "t": "Birthday dessert",
+        "d": "On us, the whole week of."
+      },
+      {
+        "t": "First dibs",
+        "d": "Pasta nights and patio parties go to the club first."
+      }
+    ]
+  },
+  "reviews": {
+    "kicker": "Sample reviews",
+    "heading": "What the regulars",
+    "headingEm": "keep saying",
+    "note": "Sample content for this demo. A real site would pull these from Google or Yelp.",
+    "items": [
+      {
+        "stars": 5,
+        "quote": "The hot honey flatbread ruined every other pizza for me. Pickup was ready in fifteen minutes and still screaming hot.",
+        "name": "Priya M.",
+        "source": "Google",
+        "when": "2 weeks ago"
+      },
+      {
+        "stars": 5,
+        "quote": "We did the back room for my partner's thirtieth. Twenty-four people, zero stress, and they let us bring our own playlist.",
+        "name": "Dre W.",
+        "source": "Yelp",
+        "when": "1 month ago"
+      },
+      {
+        "stars": 5,
+        "quote": "Gluten-free penne that does not taste like a compromise. The server knew what was safe without me explaining twice.",
+        "name": "Hannah K.",
+        "source": "Google",
+        "when": "3 weeks ago"
+      },
+      {
+        "stars": 4,
+        "quote": "Loud on a Friday, which is the point. Get the cacio e pepe and sit at the counter.",
+        "name": "Marcus T.",
+        "source": "Google",
+        "when": "5 days ago"
+      }
+    ]
+  },
+  "events": {
+    "kicker": "Private events & catering",
+    "heading": "Your people,",
+    "headingEm": "our back room",
+    "lead": "Birthdays, rehearsal dinners, team offsites and the occasional Tuesday that got out of hand. We handle the food, the drinks and the timing.",
+    "packages": [
+      {
+        "name": "The Back Table",
+        "capacity": "Up to 12 seated",
+        "price": "No room fee, $45 per person",
+        "includes": [
+          "Family-style for the table",
+          "Two rounds of snacks",
+          "Two hours, any night",
+          "Your own playlist"
+        ]
+      },
+      {
+        "name": "The Back Room",
+        "capacity": "24 seated, 40 standing",
+        "price": "$600 minimum, $65 per person",
+        "featured": true,
+        "includes": [
+          "Four courses, family style",
+          "A welcome cocktail",
+          "Three hours plus setup",
+          "Your own server and bartender",
+          "Projector and screen"
+        ]
+      },
+      {
+        "name": "Buy the Place Out",
+        "capacity": "70 seated, 110 standing",
+        "price": "From $4,500",
+        "includes": [
+          "The whole room and the patio",
+          "Passed snacks plus stations",
+          "Open bar options",
+          "Five hours",
+          "Free parking in the lot next door"
+        ]
+      }
+    ],
+    "catering": {
+      "heading": "Catering trays",
+      "body": "Feeds eight to ten per tray. Order 24 hours ahead, pick it up or we deliver for $25 anywhere in the city.",
+      "items": [
+        {
+          "name": "Pizza party",
+          "serves": "Feeds 10 to 12",
+          "price": 140,
+          "d": "Six pizzas, two salads, garlic bread"
+        },
+        {
+          "name": "Pasta tray",
+          "serves": "Feeds 8 to 10",
+          "price": 95,
+          "d": "Choose two: bolognese, cacio e pepe, pesto"
+        },
+        {
+          "name": "Salad & snacks",
+          "serves": "Feeds 8 to 10",
+          "price": 75,
+          "d": "Little gem, chopped, olives, bread, whipped ricotta"
+        },
+        {
+          "name": "Sweets box",
+          "serves": "24 pieces",
+          "price": 60,
+          "d": "Olive oil cake, brownies, lemon bars"
+        }
+      ]
+    },
+    "faq": [
+      {
+        "q": "How far ahead should we book?",
+        "a": "Two weeks is comfortable. December fills up by Halloween."
+      },
+      {
+        "q": "Can we bring a cake?",
+        "a": "Yes. No cutting fee, and we will plate it for you."
+      },
+      {
+        "q": "What about dietary needs?",
+        "a": "Tell us the count and we build the menu around it. Gluten free, vegetarian and vegan are easy here."
+      },
+      {
+        "q": "Is there a deposit?",
+        "a": "Half the food minimum holds the date, and it comes off the final bill."
+      }
+    ]
+  },
+  "visit": {
+    "kicker": "Find us",
+    "heading": "Two blocks from the",
+    "headingEm": "Blue Line",
+    "transit": "California stop on the Blue Line, then a four-minute walk. The 56 and the 73 stop at the corner.",
+    "parking": "Free lot next door after 5pm, metered on Milwaukee, and permit-free on Fullerton after 6.",
+    "access": "Step-free entry, an accessible restroom, service animals welcome, and large-print menus at the host stand. Tell us what you need and we will make it work.",
+    "dogs": "Dogs are welcome on the patio and get a bowl of water without asking."
+  },
+  "faq": [
     {
-      "title": "Private events",
-      "body": "Our back room seats twenty-four for dinner and forty standing. We handle the food, the wine and the timing; you handle the guest list."
+      "q": "Do you take reservations?",
+      "a": "Yes, for parties of one to six, up to 30 days out. The bar and the patio are kept for walk-ins every night."
     },
     {
-      "title": "Walk-ins",
-      "body": "The bar is always kept for walk-ins. If the dining room is full, there is usually a seat at the counter."
+      "q": "How late does the kitchen run?",
+      "a": "The kitchen stops 30 minutes before close. The bar keeps going until the lights come up."
+    },
+    {
+      "q": "Can you handle allergies?",
+      "a": "Most dishes can be made gluten free or dairy free, and the kitchen keeps a separate prep area. Tell your server, or add a note to your online order. Our fryer is shared, so it is not safe for severe allergies."
+    },
+    {
+      "q": "Is there a kids menu?",
+      "a": "There is, and kids eat free on Sundays with any adult entree."
+    },
+    {
+      "q": "Do you deliver?",
+      "a": "We do, about two miles in every direction, with our own drivers. $20 minimum and a flat $3.99."
+    },
+    {
+      "q": "Do you sell gift cards?",
+      "a": "Yes, in any amount from $25. They never expire and work online or at the table."
+    },
+    {
+      "q": "Can I bring a big group?",
+      "a": "Seven or more becomes a private event so nobody waits an hour for food. The back room seats 24."
+    },
+    {
+      "q": "Are you hiring?",
+      "a": "Usually. Email jobs@laurelkitchen.example with what you want to do and when you can start."
     }
   ],
+  "press": {
+    "note": "Sample press for this demo. These publications are invented.",
+    "items": [
+      {
+        "quote": "The best pizza on Milwaukee Avenue, and it is not close.",
+        "source": "Logan Square Dispatch"
+      },
+      {
+        "quote": "A neighborhood room that actually feels like the neighborhood.",
+        "source": "Chicago Neighborhood Eats"
+      },
+      {
+        "quote": "Worth the wait for a counter seat.",
+        "source": "Midwest Table Quarterly"
+      }
+    ]
+  },
+  "giftcards": {
+    "heading": "Gift cards",
+    "body": "Any amount from $25, delivered by email in about a minute. They never expire and work online or at the table.",
+    "amounts": [
+      25,
+      50,
+      75,
+      100,
+      150
+    ]
+  },
+  "newsletter": {
+    "heading": "Pasta nights, patio parties, the occasional free pizza",
+    "body": "One email a month. We never share your address, and one click gets you out."
+  },
+  "seo": {
+    "title": "Laurel | Wood-Fired Pizza & Pasta in Logan Square, Chicago",
+    "description": "Wood-fired pizza, hand-rolled pasta and cold drinks in Logan Square. Order pickup or delivery, book a table, or plan a private event at Laurel.",
+    "geo": {
+      "lat": 41.9285,
+      "lng": -87.7042
+    },
+    "priceRange": "$$",
+    "cuisine": [
+      "Italian",
+      "Pizza",
+      "American"
+    ]
+  },
   "demo": {
     "show": true,
     "text": "Demo site. Laurel is a fictional restaurant, built to show what a small-business site can do.",

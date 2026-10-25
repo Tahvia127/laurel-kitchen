@@ -1,26 +1,337 @@
 {
-  "note": "This is the only file you need to edit to change the menu. Prices are plain numbers. Set \"featured\": true on up to four dishes to show them on the home page.",
+  "_note": "The menu. Change a price here and it changes everywhere, including the order page and the totals at checkout. Set featured:true to put a dish on the home page. image is a file name in assets/img without the extension. options point at the modifier groups below.",
+  "updated": "2026-10-20",
+  "legend": {
+    "v": "Vegetarian",
+    "vg": "Vegan",
+    "gf": "Gluten free",
+    "gfo": "Gluten free on request",
+    "spicy": "Spicy"
+  },
+  "allergenNote": "Most dishes can be made gluten free or dairy free. Tell your server or add a note to your order. Our fryer is shared, so it is not safe for severe allergies.",
+  "optionGroups": [
+    {
+      "id": "pizza-size",
+      "label": "Size",
+      "type": "single",
+      "required": true,
+      "choices": [
+        {
+          "name": "12 inch",
+          "price": 0,
+          "default": true
+        },
+        {
+          "name": "16 inch, feeds two",
+          "price": 8
+        }
+      ]
+    },
+    {
+      "id": "crust",
+      "label": "Crust",
+      "type": "single",
+      "required": true,
+      "choices": [
+        {
+          "name": "Classic sourdough",
+          "price": 0,
+          "default": true
+        },
+        {
+          "name": "Gluten free, 12 inch only",
+          "price": 4
+        }
+      ]
+    },
+    {
+      "id": "pizza-extras",
+      "label": "Pile it on",
+      "type": "multi",
+      "max": 4,
+      "choices": [
+        {
+          "name": "Extra mozzarella",
+          "price": 2
+        },
+        {
+          "name": "Hot honey",
+          "price": 1
+        },
+        {
+          "name": "Fennel sausage",
+          "price": 4
+        },
+        {
+          "name": "Chili crisp",
+          "price": 1.5
+        },
+        {
+          "name": "Extra basil",
+          "price": 0
+        }
+      ]
+    },
+    {
+      "id": "pasta-style",
+      "label": "Noodle",
+      "type": "single",
+      "required": true,
+      "choices": [
+        {
+          "name": "As it comes",
+          "price": 0,
+          "default": true
+        },
+        {
+          "name": "Gluten free penne",
+          "price": 3
+        },
+        {
+          "name": "Extra noodles",
+          "price": 5
+        }
+      ]
+    },
+    {
+      "id": "add-protein",
+      "label": "Add protein",
+      "type": "single",
+      "choices": [
+        {
+          "name": "No thanks",
+          "price": 0,
+          "default": true
+        },
+        {
+          "name": "Grilled chicken",
+          "price": 7
+        },
+        {
+          "name": "Shrimp",
+          "price": 9
+        },
+        {
+          "name": "Crispy tofu",
+          "price": 5
+        },
+        {
+          "name": "Fennel sausage",
+          "price": 6
+        }
+      ]
+    },
+    {
+      "id": "dressing",
+      "label": "Dressing",
+      "type": "single",
+      "required": true,
+      "choices": [
+        {
+          "name": "Caesar",
+          "price": 0,
+          "default": true
+        },
+        {
+          "name": "Lemon vinaigrette",
+          "price": 0
+        },
+        {
+          "name": "Buttermilk ranch",
+          "price": 0
+        },
+        {
+          "name": "On the side",
+          "price": 0
+        }
+      ]
+    },
+    {
+      "id": "heat",
+      "label": "Heat",
+      "type": "single",
+      "required": true,
+      "choices": [
+        {
+          "name": "Mild",
+          "price": 0,
+          "default": true
+        },
+        {
+          "name": "Medium",
+          "price": 0
+        },
+        {
+          "name": "Bring it",
+          "price": 0
+        }
+      ]
+    },
+    {
+      "id": "side-choice",
+      "label": "Side",
+      "type": "single",
+      "required": true,
+      "choices": [
+        {
+          "name": "Duck fat fries",
+          "price": 0
+        },
+        {
+          "name": "Little gem salad",
+          "price": 0
+        },
+        {
+          "name": "Charred broccolini",
+          "price": 0
+        },
+        {
+          "name": "Roasted potatoes",
+          "price": 0
+        }
+      ]
+    },
+    {
+      "id": "doneness",
+      "label": "How do you want it",
+      "type": "single",
+      "required": true,
+      "choices": [
+        {
+          "name": "Rare",
+          "price": 0
+        },
+        {
+          "name": "Medium rare",
+          "price": 0,
+          "default": true
+        },
+        {
+          "name": "Medium",
+          "price": 0
+        },
+        {
+          "name": "Medium well",
+          "price": 0
+        },
+        {
+          "name": "Well done",
+          "price": 0
+        }
+      ]
+    },
+    {
+      "id": "egg-style",
+      "label": "Eggs",
+      "type": "single",
+      "required": true,
+      "choices": [
+        {
+          "name": "Poached",
+          "price": 0,
+          "default": true
+        },
+        {
+          "name": "Over easy",
+          "price": 0
+        },
+        {
+          "name": "Scrambled",
+          "price": 0
+        }
+      ]
+    },
+    {
+      "id": "bread-choice",
+      "label": "Bread",
+      "type": "single",
+      "required": true,
+      "choices": [
+        {
+          "name": "Sourdough",
+          "price": 0,
+          "default": true
+        },
+        {
+          "name": "Focaccia",
+          "price": 0
+        },
+        {
+          "name": "Gluten free toast",
+          "price": 2
+        }
+      ]
+    },
+    {
+      "id": "drink-mods",
+      "label": "Make it",
+      "type": "single",
+      "required": true,
+      "choices": [
+        {
+          "name": "Classic",
+          "price": 0,
+          "default": true
+        },
+        {
+          "name": "Zero proof",
+          "price": -3
+        },
+        {
+          "name": "Extra spicy",
+          "price": 0
+        }
+      ]
+    },
+    {
+      "id": "kids-side",
+      "label": "Side",
+      "type": "single",
+      "required": true,
+      "choices": [
+        {
+          "name": "Fries",
+          "price": 0,
+          "default": true
+        },
+        {
+          "name": "Fruit cup",
+          "price": 0
+        },
+        {
+          "name": "Carrots and ranch",
+          "price": 0
+        }
+      ]
+    }
+  ],
   "sections": [
     {
-      "name": "To Start",
-      "blurb": "Small plates meant for the middle of the table.",
+      "id": "snacks",
+      "name": "Snacks",
+      "blurb": "The things people order before they decide anything else.",
       "items": [
         {
+          "id": "sourdough",
           "name": "Sourdough & Cultured Butter",
-          "description": "Baked each morning, sea salt, olive oil",
+          "description": "Baked each morning, sea salt, good olive oil",
           "price": 9,
           "tags": [
             "v"
           ]
         },
         {
-          "name": "Little Gem Caesar",
-          "description": "White anchovy, aged parmesan, rye crumb",
-          "price": 15,
-          "featured": true,
-          "image": "dish-salad"
+          "id": "knots",
+          "name": "Garlic Knots",
+          "description": "Six of them, parmesan, parsley, a little pool of garlic butter",
+          "price": 10,
+          "tags": [
+            "v"
+          ],
+          "popular": true
         },
         {
+          "id": "ricotta",
           "name": "Whipped Ricotta",
           "description": "Hot honey, thyme, grilled bread",
           "price": 14,
@@ -29,6 +340,7 @@
           ]
         },
         {
+          "id": "olives",
           "name": "Marinated Olives & Almonds",
           "description": "Citrus, chili, rosemary",
           "price": 8,
@@ -36,115 +348,521 @@
             "v",
             "gf"
           ]
+        },
+        {
+          "id": "artichokes",
+          "name": "Crispy Artichokes",
+          "description": "Lemon aioli, pickled shallot",
+          "price": 13,
+          "tags": [
+            "v",
+            "gf"
+          ]
+        },
+        {
+          "id": "meatballs",
+          "name": "Meatballs & Sunday Gravy",
+          "description": "Three, ricotta, focaccia for mopping",
+          "price": 16
         }
       ]
     },
     {
-      "name": "Mains",
-      "blurb": "Cooked over fire, plated simply.",
+      "id": "pizza",
+      "name": "Wood-Fired Pizza",
+      "blurb": "Fermented 48 hours, fired at 800 degrees, out in six minutes.",
       "items": [
         {
-          "name": "Dry-Aged Ribeye",
-          "description": "Duck fat potatoes, salsa verde, bone marrow butter",
-          "price": 52,
-          "featured": true,
-          "image": "dish-steak"
-        },
-        {
-          "name": "Cacio e Pepe",
-          "description": "Hand-rolled bucatini, pecorino, black pepper",
-          "price": 24,
-          "featured": true,
-          "image": "dish-pasta",
+          "id": "margherita",
+          "name": "Margherita",
+          "description": "San Marzano, fior di latte, basil",
+          "price": 18,
           "tags": [
             "v"
+          ],
+          "options": [
+            "pizza-size",
+            "crust",
+            "pizza-extras"
           ]
         },
         {
-          "name": "Wood-Fired Half Chicken",
-          "description": "Charred lemon, bread salad, pan jus",
-          "price": 32
+          "id": "hot-honey",
+          "name": "Hot Honey Soppressata",
+          "description": "Spicy soppressata, mozzarella, hot honey, oregano",
+          "price": 23,
+          "tags": [
+            "spicy"
+          ],
+          "image": "dish-flatbread",
+          "featured": true,
+          "popular": true,
+          "options": [
+            "pizza-size",
+            "crust",
+            "pizza-extras"
+          ]
         },
         {
+          "id": "bianca",
+          "name": "Bianca",
+          "description": "No sauce. Garlic cream, mozzarella, calabrian chili, basil",
+          "price": 21,
+          "tags": [
+            "v"
+          ],
+          "image": "hero-chip",
+          "featured": true,
+          "options": [
+            "pizza-size",
+            "crust",
+            "pizza-extras"
+          ]
+        },
+        {
+          "id": "mushroom",
+          "name": "Mushroom & Taleggio",
+          "description": "Roasted maitake, taleggio, thyme, black pepper",
+          "price": 24,
+          "tags": [
+            "v"
+          ],
+          "options": [
+            "pizza-size",
+            "crust",
+            "pizza-extras"
+          ]
+        },
+        {
+          "id": "clam",
+          "name": "Clam & Chili",
+          "description": "Littlenecks, garlic, parsley, lemon, chili",
+          "price": 26,
+          "tags": [
+            "spicy"
+          ],
+          "options": [
+            "pizza-size",
+            "crust",
+            "pizza-extras"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pasta",
+      "name": "Pasta",
+      "blurb": "Rolled every morning at six. When it runs out, it runs out.",
+      "items": [
+        {
+          "id": "cacio",
+          "name": "Cacio e Pepe",
+          "description": "Hand-rolled bucatini, pecorino, a lot of black pepper",
+          "price": 24,
+          "tags": [
+            "v"
+          ],
+          "popular": true,
+          "options": [
+            "pasta-style",
+            "add-protein"
+          ]
+        },
+        {
+          "id": "pomodoro",
+          "name": "Tagliatelle Pomodoro",
+          "description": "Slow tomato, torn mozzarella, basil",
+          "price": 23,
+          "tags": [
+            "v"
+          ],
+          "image": "dish-pasta",
+          "featured": true,
+          "options": [
+            "pasta-style",
+            "add-protein"
+          ]
+        },
+        {
+          "id": "vodka",
+          "name": "Spicy Rigatoni",
+          "description": "Calabrian chili, vodka cream, parmesan",
+          "price": 26,
+          "tags": [
+            "v",
+            "spicy"
+          ],
+          "image": "dish-spaghetti",
+          "featured": true,
+          "popular": true,
+          "options": [
+            "pasta-style",
+            "add-protein"
+          ]
+        },
+        {
+          "id": "bolognese",
+          "name": "Bolognese",
+          "description": "Beef and pork, three hours, pappardelle",
+          "price": 27,
+          "options": [
+            "pasta-style",
+            "add-protein"
+          ]
+        },
+        {
+          "id": "pesto",
+          "name": "Pesto Trofie",
+          "description": "Basil, pine nut, green bean, potato",
+          "price": 24,
+          "tags": [
+            "v"
+          ],
+          "options": [
+            "pasta-style",
+            "add-protein"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plates",
+      "name": "Big Plates",
+      "blurb": "Dinner that takes a knife.",
+      "items": [
+        {
+          "id": "chicken",
+          "name": "Wood-Fired Half Chicken",
+          "description": "Charred lemon, bread salad, pan jus",
+          "price": 32,
+          "image": "dish-chicken",
+          "featured": true,
+          "options": [
+            "side-choice"
+          ]
+        },
+        {
+          "id": "trout",
+          "name": "Lake Trout",
+          "description": "Brown butter, capers, fingerling potatoes",
+          "price": 34,
+          "tags": [
+            "gf"
+          ],
+          "image": "dish-fish",
+          "options": [
+            "side-choice"
+          ]
+        },
+        {
+          "id": "ribeye",
+          "name": "Dry-Aged Ribeye",
+          "description": "Sixteen ounces, salsa verde, bone marrow butter",
+          "price": 52,
+          "options": [
+            "doneness",
+            "side-choice"
+          ]
+        },
+        {
+          "id": "cauliflower",
           "name": "Roasted Cauliflower Steak",
           "description": "Tahini, pomegranate, dukkah",
           "price": 26,
           "tags": [
             "v",
             "gf"
+          ],
+          "options": [
+            "side-choice"
           ]
         },
         {
-          "name": "Lake Trout",
-          "description": "Brown butter, capers, fingerling potatoes",
-          "price": 34,
-          "tags": [
-            "gf"
+          "id": "burger",
+          "name": "Laurel Burger",
+          "description": "Two patties, aged cheddar, house pickles, special sauce",
+          "price": 19,
+          "popular": true,
+          "options": [
+            "heat",
+            "side-choice"
           ]
         }
       ]
     },
     {
-      "name": "For the Table",
-      "blurb": "Built to share, priced to make it easy.",
+      "id": "greens",
+      "name": "Greens & Sides",
+      "blurb": "Order two. They go in the middle.",
       "items": [
         {
-          "name": "Butcher's Board",
-          "description": "Three cuts, seasonal sides, house pickles. Serves four.",
-          "price": 88,
+          "id": "caesar",
+          "name": "Little Gem Caesar",
+          "description": "White anchovy, aged parmesan, rye crumb",
+          "price": 15,
+          "tags": [
+            "gfo"
+          ],
+          "image": "dish-salad",
           "featured": true,
-          "image": "dish-board"
+          "options": [
+            "dressing",
+            "add-protein"
+          ]
         },
         {
-          "name": "Wood-Fired Flatbread",
-          "description": "Fennel sausage, mozzarella, hot honey",
-          "price": 21,
-          "image": "dish-pizza"
-        },
-        {
-          "name": "Seasonal Vegetables",
-          "description": "Whatever is best that week, cooked over coals",
+          "id": "chopped",
+          "name": "Chopped Salad",
+          "description": "Everything in the walk-in, red wine vinaigrette",
           "price": 16,
           "tags": [
             "v",
             "gf"
+          ],
+          "image": "dish-chopped",
+          "options": [
+            "add-protein"
           ]
-        }
-      ]
-    },
-    {
-      "name": "Sweets",
-      "blurb": "",
-      "items": [
+        },
         {
-          "name": "Olive Oil Cake",
-          "description": "Mascarpone, macerated citrus",
+          "id": "fries",
+          "name": "Duck Fat Fries",
+          "description": "Rosemary salt, garlic aioli",
+          "price": 9,
+          "tags": [
+            "gf"
+          ],
+          "popular": true
+        },
+        {
+          "id": "broccolini",
+          "name": "Charred Broccolini",
+          "description": "Chili, lemon, breadcrumb",
           "price": 12,
           "tags": [
             "v"
           ]
         },
         {
-          "name": "Basque Cheesecake",
-          "description": "Burnt top, black cherry",
-          "price": 13,
-          "tags": [
-            "v"
-          ]
-        },
-        {
-          "name": "Affogato",
-          "description": "Espresso, vanilla gelato, amaretti",
-          "price": 10,
+          "id": "garlic-bread",
+          "name": "Garlic Bread",
+          "description": "The whole loaf, pull it apart",
+          "price": 8,
           "tags": [
             "v"
           ]
         }
       ]
+    },
+    {
+      "id": "sweets",
+      "name": "Sweets",
+      "blurb": "Say yes. You can walk it off on Milwaukee Avenue.",
+      "items": [
+        {
+          "id": "cake",
+          "name": "Olive Oil Cake",
+          "description": "Mascarpone, macerated citrus",
+          "price": 12,
+          "tags": [
+            "v"
+          ],
+          "image": "dish-cake"
+        },
+        {
+          "id": "basque",
+          "name": "Basque Cheesecake",
+          "description": "Burnt on top, black cherry",
+          "price": 13,
+          "tags": [
+            "v"
+          ],
+          "image": "dish-cheesecake",
+          "featured": true,
+          "popular": true
+        },
+        {
+          "id": "affogato",
+          "name": "Affogato",
+          "description": "Espresso, vanilla gelato, amaretti",
+          "price": 10,
+          "tags": [
+            "v",
+            "gf"
+          ]
+        },
+        {
+          "id": "sundae",
+          "name": "Brownie Sundae",
+          "description": "Warm brownie, soft serve, salted fudge",
+          "price": 11,
+          "tags": [
+            "v"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "name": "Drinks",
+      "blurb": "Short list, cold glasses, nothing over fifteen dollars.",
+      "items": [
+        {
+          "id": "spritz",
+          "name": "Laurel Spritz",
+          "description": "Aperol, grapefruit, prosecco, soda",
+          "price": 14,
+          "image": "drink-spritz",
+          "featured": true,
+          "options": [
+            "drink-mods"
+          ]
+        },
+        {
+          "id": "negroni",
+          "name": "House Negroni",
+          "description": "Batched, barrel rested, one big cube",
+          "price": 15,
+          "options": [
+            "drink-mods"
+          ]
+        },
+        {
+          "id": "flight",
+          "name": "Spritz Flight",
+          "description": "Four minis, four colors, one tray",
+          "price": 26,
+          "image": "drink-cocktails",
+          "popular": true
+        },
+        {
+          "id": "paloma",
+          "name": "Zero-Proof Paloma",
+          "description": "Grapefruit, lime, salt, soda",
+          "price": 9,
+          "tags": [
+            "v",
+            "gf"
+          ]
+        },
+        {
+          "id": "beer",
+          "name": "Draft Beer",
+          "description": "Four taps, all from Illinois. Ask what is on",
+          "price": 7
+        },
+        {
+          "id": "wine",
+          "name": "Glass of Wine",
+          "description": "Six by the glass, nothing precious",
+          "price": 12
+        }
+      ]
+    },
+    {
+      "id": "brunch",
+      "name": "Weekend Brunch",
+      "blurb": "Saturday and Sunday, 10am till 3pm.",
+      "availability": "Saturday and Sunday only, 10am to 3pm",
+      "items": [
+        {
+          "id": "benedict",
+          "name": "Laurel Benedict",
+          "description": "House ham, hollandaise, focaccia, breakfast potatoes",
+          "price": 18,
+          "image": "dish-eggs",
+          "featured": true,
+          "options": [
+            "egg-style"
+          ]
+        },
+        {
+          "id": "avo-toast",
+          "name": "Avocado Toast",
+          "description": "Soft eggs, pomegranate, dill, chili oil",
+          "price": 15,
+          "tags": [
+            "v"
+          ],
+          "image": "dish-toast",
+          "options": [
+            "bread-choice",
+            "add-protein"
+          ]
+        },
+        {
+          "id": "pancakes",
+          "name": "Lemon Ricotta Pancakes",
+          "description": "Blueberry compote, whipped butter",
+          "price": 16,
+          "tags": [
+            "v"
+          ],
+          "popular": true
+        },
+        {
+          "id": "brunch-pizza",
+          "name": "Breakfast Pizza",
+          "description": "Egg, guanciale, mozzarella, black pepper",
+          "price": 19,
+          "options": [
+            "crust"
+          ]
+        },
+        {
+          "id": "mimosas",
+          "name": "Bottomless Mimosas",
+          "description": "Ninety minutes, orange or grapefruit",
+          "price": 22
+        }
+      ]
+    },
+    {
+      "id": "kids",
+      "name": "Kids",
+      "blurb": "Under twelve. Free on Sundays with any adult entree.",
+      "items": [
+        {
+          "id": "kid-pizza",
+          "name": "Little Cheese Pizza",
+          "description": "Six inches, all cheese, no judgement",
+          "price": 10,
+          "tags": [
+            "v"
+          ],
+          "options": [
+            "kids-side"
+          ]
+        },
+        {
+          "id": "kid-noodles",
+          "name": "Buttered Noodles",
+          "description": "Parmesan on the side",
+          "price": 9,
+          "tags": [
+            "v"
+          ],
+          "options": [
+            "kids-side"
+          ]
+        },
+        {
+          "id": "kid-tenders",
+          "name": "Chicken Tenders",
+          "description": "Honey mustard or ranch",
+          "price": 11,
+          "options": [
+            "kids-side"
+          ]
+        }
+      ]
     }
   ],
-  "legend": {
-    "v": "Vegetarian",
-    "gf": "Gluten free"
+  "legendShort": {
+    "v": "Veg",
+    "vg": "Vegan",
+    "gf": "GF",
+    "gfo": "GF on ask",
+    "spicy": "Spicy"
   }
 }
